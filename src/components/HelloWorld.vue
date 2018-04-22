@@ -17,13 +17,14 @@
           strong {{movie.title}}
           span {{movie.releasedate}}
           div
-            button.btn.btn-primary(@click='addQueue(movie)', v-if='!queue[movie.title]') Queue
-            button.btn.btn-secondary(@click='addWatched(movie)', v-if='!watched[movie.title]') Watched
+            button.btn.btn-primary(@click='addQueue(movie)', v-if='!queue[getKeyForMovieTitle(movie.title)]') Queue
+            button.btn.btn-secondary(@click='addWatched(movie)', v-if='!watched[getKeyForMovieTitle(movie.title)]') Watched
 </template>
 
 <script>
 import { ModelSelect } from 'vue-search-select';
 import moment from 'moment';
+import slugify from 'slugify';
 import movies from '../data/movies.json';
 
 export default {
@@ -47,15 +48,6 @@ export default {
       searchTerm: '',
       catOptions: [
         { value: 'Linear Algebra', text: 'Linear Algebra' },
-        { value: 'Convex Optimization', text: 'Convex Optimization' },
-        { value: 'Statistics', text: 'Statistics' },
-        { value: 'Differential Equations & Calculus', text: 'Differential Equations & Calculus' },
-        { value: 'Data Mining', text: 'Data Mining' },
-        { value: 'General Machine Learning', text: 'General Machine Learning' },
-        { value: 'Reinforcement Learning', text: 'Reinforcement Learning' },
-        { value: 'Deep Learning', text: 'Deep Learning' },
-        { value: 'Convolutional Neural Networks', text: 'Convolutional Neural Networks' },
-        { value: 'Recurrent Neural Networks', text: 'Recurrent Neural Networks' },
       ],
       selectedCat: {
         value: '',
@@ -63,8 +55,6 @@ export default {
       },
       formatOptions: [
         { value: 'Book', text: 'Book' },
-        { value: 'Website', text: 'Website' },
-        { value: 'Video', text: 'Video' },
       ],
       selectedFormat: {
         value: '',
@@ -100,25 +90,14 @@ export default {
     },
   },
   methods: {
+    getKeyForMovieTitle(movieTitle) {
+      return slugify(movieTitle.replace(/[.#$,\[\]]+/g, ''));
+    },
     addQueue(movie) {
-      if (!this.queue[movie.title]) {
-        this.$set(this.$store.state.queue, movie.title, movie);
-        localStorage.setItem('tvqueue-queue', JSON.stringify(this.$store.state.queue));
-        return;
-      }
-
-      this.$delete(this.$store.state.queue, movie.title);
-      localStorage.setItem('tvqueue-queue', JSON.stringify(this.$store.state.queue));
+      this.$store.commit('addToQueue', { movie });
     },
     addWatched(movie) {
-      if (!this.watched[movie.title]) {
-        this.$set(this.$store.state.watched, movie.title, movie);
-        localStorage.setItem('tvqueue-watched', JSON.stringify(this.$store.state.watched));
-        return;
-      }
-
-      this.$delete(this.$store.state.watched, movie.title);
-      localStorage.setItem('tvqueue-watched', JSON.stringify(this.$store.state.watched));
+      this.$store.commit('addToWatched', { movie });
     },
   },
 };

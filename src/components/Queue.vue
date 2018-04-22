@@ -31,10 +31,7 @@ export default {
   },
   methods: {
     removeQueue(movie) {
-      // @TODO: Add mutator
-      this.$delete(this.$store.state.queue, movie.title);
-      localStorage.setItem('tvqueue-queue', JSON.stringify(this.$store.state.queue));
-      // this.$store.state.queue = this.queue;
+      this.$store.commit('removeFromQueue', { movie });
     },
   },
 };

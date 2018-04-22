@@ -1,7 +1,12 @@
+import Vue from 'vue';
 import Vuex from 'vuex';
-import podcasts from './podcasts.json';
+import slugify from 'slugify';
 
-// const slugify = require('slugify');
+import podcasts from './podcasts.json';
+import getFirebase from './lib/firebase';
+
+const firebase = getFirebase();
+const database = firebase.database();
 
 let queue = {};
 let watched = {};
@@ -23,6 +28,27 @@ try {
 
 }
 
+database
+  .ref('tvqueue-queue').once('value')
+  .then((firebaseQueue) => {
+    const val = firebaseQueue.val();
+    if (val) queue = val;
+
+    return database
+      .ref('tvqueue-watched').once('value');
+  })
+  .then((snap) => {
+    const val = snap.val();
+    if (val) watched = val;
+
+    console.log(queue, watched);
+  });
+
+// @TODO: Lib
+function getKeyForMovieTitle(movieTitle) {
+  return slugify(movieTitle.replace(/[.#$,\[\]]+/g, ''));
+}
+
 export function getStore() { // eslint-disable-line
   const store = new Vuex.Store({
     state: {
@@ -31,21 +57,59 @@ export function getStore() { // eslint-disable-line
       watched,
     },
     mutations: {
-      // selectItem(state, payload) {
-      //   state.selectedItem = payload.item;
-      // },
+      addToQueue(state, payload) {
+        const { movie } = payload;
+
+        const movieTitleKey = getKeyForMovieTitle(movie.title);
+
+        if (state.queue[movieTitleKey]) return;
+
+        Vue.set(state.queue, movieTitleKey, movie);
+
+        const updates = {};
+        updates['/tvqueue-queue/'] = state.queue;
+        database.ref().update(updates);
+
+        localStorage.setItem('tvqueue-queue', JSON.stringify(state.queue));
+      },
+      addToWatched(state, payload) {
+        const { movie } = payload;
+
+        const movieTitleKey = getKeyForMovieTitle(movie.title);
+
+        if (state.watched[movieTitleKey]) return;
+
+        Vue.set(state.watched, movieTitleKey, movie);
+
+        const updates = {};
+        updates['/tvqueue-watched/'] = state.watched;
+        database.ref().update(updates);
+
+        localStorage.setItem('tvqueue-watched', JSON.stringify(state.watched));
+      },
+      removeFromQueue(state, payload) {
+        const { movie } = payload;
+
+        Vue.delete(state.queue, getKeyForMovieTitle(movie.title));
+        localStorage.setItem('tvqueue-queue', JSON.stringify(state.queue));
+
+        const updates = {};
+        updates['/tvqueue-queue/'] = state.queue;
+        database.ref().update(updates);
+      },
+      removeFromWatched(state, payload) {
+        const { movie } = payload;
+
+        Vue.delete(state.watched, getKeyForMovieTitle(movie.title));
+
+        localStorage.setItem('tvqueue-watched', JSON.stringify(state.watched));
+
+        const updates = {};
+        updates['/tvqueue-watched/'] = state.watched;
+        database.ref().update(updates);
+      },
     },
     getters: {
-      // findItem: () => (slug) => {
-      //   function find(i) {
-      //     return slugify(i.title.toLowerCase()) === slug;
-      //   }
-      //
-      //   // let item = breakfast.find(find);
-      //   // if (item) return item;
-      //
-      //   return {};
-      // },
       filterItems: () => (searchTerm) => {
         if (!searchTerm) return podcasts;
 

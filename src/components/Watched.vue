@@ -31,9 +31,7 @@ export default {
   },
   methods: {
     remove(movie) {
-      // @TODO: Add mutator
-      this.$delete(this.$store.state.watched, movie.title);
-      localStorage.setItem('tvqueue-watched', JSON.stringify(this.$store.state.watched));
+      this.$store.commit('removeFromWatched', { movie });
     },
   },
 };
