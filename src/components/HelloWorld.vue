@@ -11,7 +11,7 @@
         input.search.form-control(type='text', v-model='dateFilter')
   .container
     .row.text-left
-      .col-12.col-md-12(v-for='movie in movies')
+      .col-12.col-md-12(v-for='movie in movies', v-if='!queue[getKeyForMovieTitle(movie.title)] && !watched[getKeyForMovieTitle(movie.title)]')
         .card
           //.img(:style='`background-image: url("${resource.img}")`')
           strong {{movie.title}}
@@ -27,6 +27,10 @@ import moment from 'moment';
 import slugify from 'slugify';
 import movies from '../data/movies.json';
 
+import getFirebase from '../lib/firebase';
+
+const database = getFirebase();
+
 export default {
   name: 'HelloWorld',
   components: {
@@ -41,6 +45,25 @@ export default {
         { vmid: 'description', name: 'description', content: title },
       ],
     };
+  },
+  mounted() {
+    database
+      .ref('tvqueue-queue').once('value')
+      .then((firebaseQueue) => {
+        const val = firebaseQueue.val();
+        if (val) {
+          this.$store.state.queue = val;
+        }
+
+        return database
+          .ref('tvqueue-watched').once('value');
+      })
+      .then((snap) => {
+        const val = snap.val();
+        if (val) {
+          this.$store.state.watched = val;
+        }
+      });
   },
   data() {
     return {

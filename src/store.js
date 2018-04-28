@@ -5,8 +5,7 @@ import slugify from 'slugify';
 import podcasts from './podcasts.json';
 import getFirebase from './lib/firebase';
 
-const firebase = getFirebase();
-const database = firebase.database();
+const database = getFirebase();
 
 let queue = {};
 let watched = {};

@@ -7,9 +7,10 @@ const config = {
   messagingSenderId: '451043099307',
 };
 
+const firebase = window.firebase;
+firebase.initializeApp(config);
 
 export default function getFirebase() {
-  const firebase = window.firebase;
-  firebase.initializeApp(config);
-  return firebase;
+  const database = firebase.database();
+  return database;
 }
