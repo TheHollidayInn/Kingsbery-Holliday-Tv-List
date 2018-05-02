@@ -11,20 +11,24 @@
         input.search.form-control(type='text', v-model='dateFilter')
   .container
     .row.text-left
-      .col-12.col-md-12(v-for='movie in movies', v-if='!queue[getKeyForMovieTitle(movie.title)] && !watched[getKeyForMovieTitle(movie.title)]')
+      .col-12.col-md-4(v-for='movie in movies', :key='movie.title', v-if='!queue[getKeyForMovieTitle(movie.title)] && !watched[getKeyForMovieTitle(movie.title)] && !hide[getKeyForMovieTitle(movie.title)]')
         .card
-          //.img(:style='`background-image: url("${resource.img}")`')
+          img.img(v-lazy="movie.image")
+          //.img(:style='`background-image: url("${movie.image}")`')
           strong {{movie.title}}
           span {{movie.releasedate}}
+          span {{movie.desc}}
           div
             button.btn.btn-primary(@click='addQueue(movie)', v-if='!queue[getKeyForMovieTitle(movie.title)]') Queue
             button.btn.btn-secondary(@click='addWatched(movie)', v-if='!watched[getKeyForMovieTitle(movie.title)]') Watched
+            button.btn.btn-secondary(@click='addHide(movie)', v-if='!hide[getKeyForMovieTitle(movie.title)]') Hide
 </template>
 
 <script>
 import { ModelSelect } from 'vue-search-select';
 import moment from 'moment';
 import slugify from 'slugify';
+import sortBy from 'lodash/sortBy';
 import movies from '../data/movies.json';
 
 import getFirebase from '../lib/firebase';
@@ -63,6 +67,15 @@ export default {
         if (val) {
           this.$store.state.watched = val;
         }
+
+        return database
+          .ref('tvqueue-watched').once('value');
+      })
+      .then((snap) => {
+        const val = snap.val();
+        if (val) {
+          this.$store.state.hide = val;
+        }
       });
   },
   data() {
@@ -98,29 +111,47 @@ export default {
     watched() {
       return this.$store.state.watched;
     },
+    hide() {
+      return this.$store.state.hide;
+    },
     movies() {
-      return movies.map((mov) => {
+      const moviesMap = {};
+
+      const movFiltered =  movies.map((mov) => {
         mov.date = new Date(mov.releasedate);
+        moviesMap[mov.title] = 0;
         return mov;
       })
-      .filter((mov) => {
-        const searchMatched = this.searchTerm ? mov.title.toLowerCase().indexOf(this.searchTerm.toLowerCase()) !== -1 : true;
-        const yearMatched = this.dateFilter ? moment(mov.date).year() === parseInt(this.dateFilter, 10) : true;
+        .filter((mov) => {
+          const searchMatched = this.searchTerm ?
+            mov.title.toLowerCase().indexOf(this.searchTerm.toLowerCase()) !== -1 : true;
+          const yearMatched = this.dateFilter ?
+            moment(mov.releasedate).year() === parseInt(this.dateFilter, 10) : false;
 
-        return yearMatched && searchMatched;
-        // return mov;
-      });
+          if (!moviesMap[mov.title]) moviesMap[mov.title] = 0;
+          moviesMap[mov.title] += 1;
+
+          return yearMatched && searchMatched && moviesMap[mov.title] === 1;
+        });
+
+      return sortBy(movFiltered, [(o) => {
+        return o.title;
+      }]);
     },
   },
   methods: {
     getKeyForMovieTitle(movieTitle) {
-      return slugify(movieTitle.replace(/[.#$,\[\]]+/g, ''));
+      if (!movieTitle) return '';
+      return slugify(encodeURI(movieTitle).replace(/[.#$,\[\]]+/g, ''));
     },
     addQueue(movie) {
       this.$store.commit('addToQueue', { movie });
     },
     addWatched(movie) {
       this.$store.commit('addToWatched', { movie });
+    },
+    addHide(movie) {
+      this.$store.commit('addToHide', { movie });
     },
   },
 };

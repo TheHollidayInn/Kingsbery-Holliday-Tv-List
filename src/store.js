@@ -9,6 +9,7 @@ const database = getFirebase();
 
 let queue = {};
 let watched = {};
+let hide = {};
 
 const storedWatched = localStorage.getItem('tvqueue-watched');
 const storedQueue = localStorage.getItem('tvqueue-queue');
@@ -45,7 +46,7 @@ database
 
 // @TODO: Lib
 function getKeyForMovieTitle(movieTitle) {
-  return slugify(movieTitle.replace(/[.#$,\[\]]+/g, ''));
+  return slugify(encodeURI(movieTitle).replace(/[.#$,\[\]]+/g, ''));
 }
 
 export function getStore() { // eslint-disable-line
@@ -54,6 +55,7 @@ export function getStore() { // eslint-disable-line
       // selectedItem: {},
       queue,
       watched,
+      hide,
     },
     mutations: {
       addToQueue(state, payload) {
@@ -85,6 +87,21 @@ export function getStore() { // eslint-disable-line
         database.ref().update(updates);
 
         localStorage.setItem('tvqueue-watched', JSON.stringify(state.watched));
+      },
+      addToHide(state, payload) {
+        const { movie } = payload;
+
+        const movieTitleKey = getKeyForMovieTitle(movie.title);
+
+        if (state.hide[movieTitleKey]) return;
+
+        Vue.set(state.hide, movieTitleKey, movie);
+
+        const updates = {};
+        updates['/tvqueue-hide/'] = state.hide;
+        database.ref().update(updates);
+
+        // localStorage.setItem('tvqueue-hide', JSON.stringify(state.hide));
       },
       removeFromQueue(state, payload) {
         const { movie } = payload;

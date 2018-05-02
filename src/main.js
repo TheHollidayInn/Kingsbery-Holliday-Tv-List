@@ -3,8 +3,9 @@
 import Vue from 'vue';
 import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
-import VueAnalytics from 'vue-analytics';
+// import VueAnalytics from 'vue-analytics';
 import Meta from 'vue-meta';
+import VueLazyload from 'vue-lazyload';
 
 import App from './App';
 import router from './router';
@@ -13,13 +14,14 @@ import { getStore } from './store';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 
+Vue.use(VueLazyload);
 Vue.use(Vuex);
 Vue.use(Meta);
 Vue.use(BootstrapVue);
-Vue.use(VueAnalytics, {
-  id: 'UA-27991830-15',
-  router,
-});
+// Vue.use(VueAnalytics, {
+//   // id: 'UA-27991830-15',
+//   router,
+// });
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
