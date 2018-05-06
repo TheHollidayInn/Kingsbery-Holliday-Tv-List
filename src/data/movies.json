@@ -1,5 +1,165 @@
 [
     {
+        "title": "The Big Bang Theory",
+        "metascore": "68.0",
+        "releasedate": "September 24, 2007",
+        "image": "https://image.tmdb.org/t/p/w185_and_h278_bestv2/ooBGRQBdbGzBxAVfExiO8r7kloA.jpg",
+        "desc": "The Big Bang Theory is centered on five characters living in Pasadena, California: roommates Leonard Hofstadter and Sheldon Cooper; Penny, a waitress and aspiring actress who lives across the hall; and Leonard and…",
+        "website": "https://www.themoviedb.org/tv/1418"
+    },
+    {
+        "title": "Modern Family",
+        "metascore": "73.0",
+        "releasedate": "September 23, 2009",
+        "image": "https://image.tmdb.org/t/p/w185_and_h278_bestv2/gLAcu4VPCAb90oJvJ4nUJc5ZBQi.jpg",
+        "desc": "The Pritchett-Dunphy-Tucker clan is a wonderfully large and blended family. They give us an honest and often hilarious look into the sometimes warm, sometimes twisted, embrace of the modern family.",
+        "website": "https://www.themoviedb.org/tv/1421"
+    },
+    {
+        "title": "Arrow",
+        "metascore": "60",
+        "releasedate": "October 10, 2012",
+        "image": "https://image.tmdb.org/t/p/w185_and_h278_bestv2/mo0FP1GxOFZT4UDde7RFDz5APXF.jpg",
+        "desc": "Spoiled billionaire playboy Oliver Queen is missing and presumed dead when his yacht is lost at sea. He returns five years later a changed man, determined to clean up the city as a hooded vigilante armed with a…",
+        "website": "https://www.themoviedb.org/tv/1412"
+    },
+    {
+        "title": "The Flash",
+        "metascore": "67.0",
+        "releasedate": "October  7, 2014",
+        "image": "https://image.tmdb.org/t/p/w185_and_h278_bestv2/lUFK7ElGCk9kVEryDJHICeNdmd1.jpg",
+        "desc": "After a particle accelerator causes a freak storm, CSI Investigator Barry Allen is struck by lightning and falls into a coma. Months later he awakens with the power of super speed, granting him the ability to move…",
+        "website": "https://www.themoviedb.org/tv/60735"
+    },
+    {
+        "title": "Supernatural",
+        "metascore": "72.0",
+        "releasedate": "September 13, 2005",
+        "image": "https://image.tmdb.org/t/p/w185_and_h278_bestv2/pui1V389cQft0BVFu9pbsYLEW1Q.jpg",
+        "desc": "When they were boys, Sam and Dean Winchester lost their mother to a mysterious and demonic supernatural force. Subsequently, their father raised them to be soldiers. He taught them about the paranormal evil that…",
+        "website": "https://www.themoviedb.org/tv/1622"
+    },
+    {
+        "title": "The Walking Dead",
+        "metascore": "73.0",
+        "releasedate": "October 31, 2010",
+        "image": "https://image.tmdb.org/t/p/w185_and_h278_bestv2/yn7psGTZsHumHOkLUmYpyrIcA2G.jpg",
+        "desc": "Sheriff's deputy Rick Grimes awakens from a coma to find a post-apocalyptic world dominated by flesh-eating zombies. He sets out to find his family and encounters many other survivors along the way.",
+        "website": "https://www.themoviedb.org/tv/1402"
+    },
+    {
+        "title": "Riverdale",
+        "metascore": "72.0",
+        "releasedate": "January 26, 2017",
+        "image": "https://image.tmdb.org/t/p/w185_and_h278_bestv2/1TsbOTztAJtzTRXAhoLsX9a83XX.jpg",
+        "desc": "Set in the present, the series offers a bold, subversive take on Archie, Betty, Veronica and their friends, exploring the surreality of small-town life, the darkness and weirdness bubbling beneath Riverdale’s wholesome…",
+        "website": "https://www.themoviedb.org/tv/69050"
+    },
+    {
+        "title": "Vidas Opostas",
+        "metascore": "15.0",
+        "releasedate": "April  9, 2018",
+        "image": "https://image.tmdb.org/t/p/w185_and_h278_bestv2/4phaUReEl88Y30qEVfNBCHqGJbd.jpg",
+        "desc": "Eva Lemos lives a stable and seemingly happy life, until Marco, her husband, disappears suddenly after knowing that she is pregnant. Marco steals all her money, leaving her homeless and without a job, while Eva…",
+        "website": "https://www.themoviedb.org/tv/78543"
+    },
+    {
+        "title": "The Simpsons",
+        "metascore": "72.0",
+        "releasedate": "December 17, 1989",
+        "image": "https://image.tmdb.org/t/p/w185_and_h278_bestv2/yTZQkSsxUFJZJe67IenRM0AEklc.jpg",
+        "desc": "Set in Springfield, the average American town, the show focuses on the antics and everyday adventures of the Simpson family; Homer, Marge, Bart, Lisa and Maggie, as well as a virtual cast of thousands. Since the…",
+        "website": "https://www.themoviedb.org/tv/456"
+    },
+    {
+        "title": "The Blacklist",
+        "metascore": "70",
+        "releasedate": "September 23, 2013",
+        "image": "https://image.tmdb.org/t/p/w185_and_h278_bestv2/bgbQCW4fE9b6wSOSC6Fb4FfVzsW.jpg",
+        "desc": "Raymond \"Red\" Reddington, one of the FBI's most wanted fugitives, surrenders in person at FBI Headquarters in Washington, D.C. He claims that he and the FBI have the same interests: bringing down dangerous criminals…",
+        "website": "https://www.themoviedb.org/tv/46952"
+    },
+    {
+        "title": "Mindhunter",
+        "metascore": "75.0",
+        "releasedate": "October 13, 2017",
+        "image": "https://image.tmdb.org/t/p/w185_and_h278_bestv2/r7RIwuceOaDP4KTmU1EFeDniRq4.jpg",
+        "desc": "An agent in the FBI's Elite Serial Crime Unit develops profiling techniques as he pursues notorious serial killers and rapists.",
+        "website": "https://www.themoviedb.org/tv/67744"
+    },
+    {
+        "title": "Grey's Anatomy",
+        "metascore": "61.0",
+        "releasedate": "March 27, 2005",
+        "image": "https://image.tmdb.org/t/p/w185_and_h278_bestv2/mgOZSS2FFIGtfVeac1buBw3Cx5w.jpg",
+        "desc": "Follows the personal and professional lives of a group of doctors at Seattle’s Grey Sloan Memorial Hospital.",
+        "website": "https://www.themoviedb.org/tv/1416"
+    },
+    {
+        "title": "Westworld",
+        "metascore": "82.0",
+        "releasedate": "October  2, 2016",
+        "image": "https://image.tmdb.org/t/p/w185_and_h278_bestv2/6aj09UTMQNyfSfk0ZX8rYOEsXL2.jpg",
+        "desc": "A dark odyssey about the dawn of artificial consciousness and the evolution of sin. Set at the intersection of the near future and the reimagined past, it explores a world in which every human appetite, no matter…",
+        "website": "https://www.themoviedb.org/tv/63247"
+    },
+    {
+        "title": "PBS NewsHour",
+        "metascore": "56.0",
+        "releasedate": "October 20, 1975",
+        "image": "https://image.tmdb.org/t/p/w185_and_h278_bestv2/rhd0rmg0dd4foBJJxiPzFKLon89.jpg",
+        "desc": "America's first and longest running hour-long nightly news broadcast known for its in-depth coverage of issues and current events.",
+        "website": "https://www.themoviedb.org/tv/1655"
+    },
+    {
+        "title": "The Missing",
+        "metascore": "71.0",
+        "releasedate": "October 28, 2014",
+        "image": "https://image.tmdb.org/t/p/w185_and_h278_bestv2/w1FDeOGoFS1qsSRHlj2Jzp2P0e1.jpg",
+        "desc": "A gripping anthological relationship thriller series exploring the emotional fallout of a child's abduction not only on the family but on the wider community, told over two time frames.",
+        "website": "https://www.themoviedb.org/tv/61555"
+    },
+    {
+        "title": "Doctor Who",
+        "metascore": "69.0",
+        "releasedate": "March 26, 2005",
+        "image": "https://image.tmdb.org/t/p/w185_and_h278_bestv2/74pYAFmEhj2DuoUeUF91CbLpXSd.jpg",
+        "desc": "The Doctor looks and seems human. He's handsome, witty, and could be mistaken for just another man in the street. But he is a Time Lord: a 900 year old alien with 2 hearts, part of a gifted civilization who mastered…",
+        "website": "https://www.themoviedb.org/tv/57243"
+    },
+    {
+        "title": "Marvel's Agents of S.H.I.E.L.D.",
+        "metascore": "67.0",
+        "releasedate": "September 24, 2013",
+        "image": "https://image.tmdb.org/t/p/w185_and_h278_bestv2/xjm6uVktPuKXNILwjLXwVG5d5BU.jpg",
+        "desc": "Agent Phil Coulson of S.H.I.E.L.D. (Strategic Homeland Intervention, Enforcement and Logistics Division) puts together a team of agents to investigate the new, the strange and the unknown around the globe, protecting…",
+        "website": "https://www.themoviedb.org/tv/1403"
+    },
+    {
+        "title": "Family Guy",
+        "metascore": "65.0",
+        "releasedate": "January 31, 1999",
+        "image": "https://image.tmdb.org/t/p/w185_and_h278_bestv2/gBGUL1UTUNmdRQT8gA1LUV4yg39.jpg",
+        "desc": "Sick, twisted, politically incorrect and Freakin' Sweet animated series featuring the adventures of the dysfunctional Griffin family. Bumbling Peter and long-suffering Lois have three kids. Stewie (a brilliant but…",
+        "website": "https://www.themoviedb.org/tv/1434"
+    },
+    {
+        "title": "Homeland",
+        "metascore": "73.0",
+        "releasedate": "October  2, 2011",
+        "image": "https://image.tmdb.org/t/p/w185_and_h278_bestv2/lT8o38ubu9uzcjZbkDtwsVizDeQ.jpg",
+        "desc": "CIA officer Carrie Mathison is tops in her field despite being bipolar, which makes her volatile and unpredictable. With the help of her long-time mentor Saul Berenson, Carrie fearlessly risks everything, including…",
+        "website": "https://www.themoviedb.org/tv/1407"
+    },
+    {
+        "title": "Breaking Bad",
+        "metascore": "83.0",
+        "releasedate": "January 19, 2008",
+        "image": "https://image.tmdb.org/t/p/w185_and_h278_bestv2/1yeVJox3rjo2jBKrrihIMj7uoS9.jpg",
+        "desc": "When Walter White, a New Mexico chemistry teacher, is diagnosed with Stage III cancer and given a prognosis of only two years left to live, he becomes filled with a sense of fearlessness and an unrelenting desire…",
+        "website": "https://www.themoviedb.org/tv/1396"
+    },
+    {
         "title": "MasterChef",
         "metascore": "0",
         "image": "https://image.tmdb.org/t/p/w185_and_h278_bestv2/acWxcTayD2VwQL3W04sZCEZMWcg.jpg",
